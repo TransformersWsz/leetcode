@@ -7,6 +7,7 @@
 @Method: https://blog.csdn.net/peakmoment/article/details/105416544
 '''
 
+
 import collections
 
 class Solution(object):
