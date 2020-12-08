@@ -12,7 +12,7 @@ class Solution:
     def leftMaxOne(self, nums):
         row = len(nums)
         col = len(nums[0])
-        arr = [ [0]*(col+1) for _ in range(row+1)]
+        arr = [[0]*(col+1) for _ in range(row+1)]
         for i in range(1, row+1):
             for j in range(1, col+1):
                 arr[i][j] = arr[i][j-1]+1 if nums[i-1][j-1]==1 else 0
