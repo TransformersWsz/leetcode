@@ -1,7 +1,7 @@
 '''
 @File  : maximum-width-of-binary-tree.py
 @Author: Swift
-@Date  : 2020/1/5 14:112
+@Date  : 2020/1/5 14:12
 @Link  : https://leetcode-cn.com/problems/maximum-width-of-binary-tree/
 @Desc  : 662. 二叉树最大宽度
 @Method: 
