@@ -4,7 +4,7 @@
 @Date  : 2020/1/5 17:43
 @Link  : https://leetcode-cn.com/problems/unique-paths/
 @Desc  : 62. 不同路径
-@Method: 
+@Method:
 '''
 
 class Solution:
