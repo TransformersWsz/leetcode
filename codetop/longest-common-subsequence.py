@@ -4,8 +4,8 @@
 @File  : longest-common-subsequence.py
 @Author: swift
 @Date  : 2021/02/26 1:59
-@Link  : 
-@Desc  :
+@Link  : https://leetcode-cn.com/problems/longest-common-subsequence/
+@Desc  : 1143. 最长公共子序列
 @Method: 
 """
 
