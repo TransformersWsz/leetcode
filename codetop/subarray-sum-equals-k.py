@@ -20,10 +20,8 @@ class Solution:
             accum +=item
             if d.get(accum-k):
                 count += d[accum-k]
-
             d[accum] = d.get(accum, 0) + 1
         return count
-
 
 
 if __name__ == '__main__':
