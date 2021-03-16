@@ -1,10 +1,12 @@
-#
-# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
-#
-#
-# @param array int整型一维数组
-# @return int整型一维数组
-#
+'''
+@File  : 数字在排序数据中出现的次数.py
+@Author: Swift
+@Date  : 2021/3/16 18:01
+@Link  : https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tab=answerKey
+@Desc  : 统计一个数字在升序数组中出现的次数。
+@Method: 
+'''
+
 # -*- coding:utf-8 -*-
 class Solution:
     def find_nolessthan(self, data, target):
@@ -36,10 +38,3 @@ class Solution:
         right = self.binary_search(data, k+0.5)
         left = self.binary_search(data, k-0.5)
         return right-left
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    arr = [1, 2, 3, 3, 3]
-    res = solution.GetNumberOfK(arr, 3)
-    print(res)
