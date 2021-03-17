@@ -11,13 +11,13 @@
 class Solution:
     def cutRope(self, number):
         # write code here
-        dp = [1] * (number+1)
-
-        for i in range(3, number+1):
+        dp = [1] * (number)
+        res = 1
+        for i in range(1, number):
             for j in range(i-1, 0, -1):
-                dp[i] = max(dp[i], dp[j]*(i-j), j*(i-j))
-
-        return dp[number]
+                dp[i] = max(dp[i], dp[j]*(i-j)*(number-i))
+                res = max(res, dp[i])
+        return res
 
 
 if __name__ == '__main__':
