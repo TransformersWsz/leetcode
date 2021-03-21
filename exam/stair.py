@@ -1,3 +1,12 @@
+'''
+@File  : stair.py
+@Author: Swift
+@Date  : 2021/3/21 19:53
+@Link  : 
+@Desc  : 有m种跨台阶方法，但是当前步不能与前两步相同，例如1，2，1非法，1，2，3合法
+@Method: 
+'''
+
 class Test(object):
     def __init__(self):
         self.count = 0
