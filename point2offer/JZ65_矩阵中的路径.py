@@ -7,6 +7,7 @@
 @Method:
 '''
 
+
 #
 # 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
 #
@@ -19,21 +20,44 @@
 #
 class Solution:
     def construct(self, matrix, rows, cols):
-        arr = [[None]*cols for _ in range(rows)]
+        arr = [[None] * cols for _ in range(rows)]
         for idx, c in enumerate(matrix):
-            arr[idx//cols][idx%cols] = c
+            arr[idx // cols][idx % cols] = c
         return arr
 
+    def dfs(self, arr, i, j, word, visited):
+        if arr[i][j] == word[0] and not visited[i][j]:
+            if len(word) == 1:
+                return True
+            visited[i][j] = True
+            res = False
+            direction = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            for pair in direction:
+                newi, newj = i+pair[0], j+pair[1]
+                if 0 <= newi < len(arr) and 0 <= newj < len(arr[0]):
+                    res = self.dfs(arr, newi, newj, word[1:], visited)
+                    if res:
+                        break
+            visited[i][j] = False
+            return res
+        else:
+            return False
 
     def hasPath(self, matrix, rows, cols, word):
         arr = self.construct(matrix, rows, cols)
-        return arr
-        # write code here
+        visited = [ [False]*cols for _ in range(rows) ]
+        for i in range(rows):
+            for j in range(cols):
+                if arr[i][j] == word[0]:
+                    if self.dfs(arr, i, j, word, visited):
+                        return True
+        return False
+
 
 if __name__ == '__main__':
     s = Solution()
     matrix = "ABCESFCSADEE"
     rows, cols = 3, 4
     word = "ABCCED"
-    arr = s.construct(matrix, rows, cols)
+    arr = s.hasPath(matrix, rows, cols, word)
     print(arr)
