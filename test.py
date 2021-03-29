@@ -1,65 +1,79 @@
 '''
-@File  : JZ56_删除链表中重复的结点.py
+@File  : word-search.py
 @Author: Swift
-@Date  : 2021/3/29 19:58
-@Link  : https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tab=answerKey
-@Desc  : 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
-@Method:
+@Date  : 2021/3/8 22:57
+@Link  : https://leetcode-cn.com/problems/word-search/
+@Desc  : 79. 单词搜索
+@Method: https://leetcode-cn.com/problems/word-search/solution/dan-ci-sou-suo-by-leetcode-solution/
 '''
 
-
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
-
-
+# -*- coding:utf-8 -*-
 class Solution:
-    def deleteDuplication(self, pHead):
-        # write code here
-        if not pHead:
-            return None
-        guard = ListNode(float("-inf"))
-        guard.next = pHead
-        pHead = pHead.next
-        guard.next.next = None
-
-        last1 = guard
-        last2 = last1.next
-        while pHead:
-            if pHead.val == last2.val:
-                pHead = pHead.next
-                while pHead and pHead.val == last2.val:
-                    pHead = pHead.next
+    def nolessthan(self, nums, target):
+        low = 0
+        high = len(nums) - 1
+        res = -1
+        while low <= high:
+            mid = (low+high) // 2
+            if target <= nums[mid]:
+                res = mid
+                high = mid - 1
             else:
-                last1 = last2
-            last2 = pHead
-            last1.next = last2
-            if pHead:
-                pHead = pHead.next
+                low = mid + 1
+        return res
 
-        return guard.next
+    def nogreaterthan(self, nums, target):
+        low = 0
+        high = len(nums) - 1
 
+        res = len(nums)
+        while low <= high:
+            mid = (low+high) // 2
+            if target < nums[mid]:
+                res = mid
+                high = mid - 1
+            else:
+                low = mid + 1
+        return res-1
 
-def construct_ll(arr):
-    guard = ListNode(0)
-    prev = guard
-    for item in arr:
-        node = ListNode(item)
-        prev.next = node
-        prev = node
-    return guard.next
+    def search(self, nums: [int], target: int) -> int:
+        def helper(tar):
+            low, high = 0, len(nums) - 1
+            while low <= high:
+                m = (low + high) // 2
+                if nums[m] <= tar:
+                    low = m + 1
+                else:
+                    high = m - 1
+            return low
+        right = helper(target)
 
+        left = helper(target-1)
+        print(right, left)
+        return right-left
 
-def traverse(head):
-    while head:
-        print(head.val)
-        head = head.next
+    def cpp(self, nums, target, lower):
+        left = 0
+        right = len(nums)-1
+        ans = len(nums)
+        while left <= right:
+            mid = (left+right) // 2
+            if nums[mid] > target or (lower and nums[mid] >= target):
+                right = mid - 1
+                ans = mid
+            else:
+                left = mid + 1
+        return ans
+
 
 
 if __name__ == '__main__':
-    arr = [1, 2, 3, 3]
-    head = construct_ll(arr)
     solution = Solution()
-    head = solution.deleteDuplication(head)
-    traverse(head)
+    data = [1, 3,3,3,4,5]
+    k = -1
+    # lidx = solution.cpp(data, k, True)
+    # ridx = solution.cpp(data, k, False)-1
+
+
+    res = solution.nolessthan(data, k)
+    print(res)
