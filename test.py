@@ -1,30 +1,34 @@
 '''
-@File  : JZ12_数值的整数次方.py
+@File  : JZ23_二叉搜索树的后序遍历序列.py
 @Author: Swift
-@Date  : 2021/3/27 12:34
-@Link  : https://www.nowcoder.com/practice/1a834e5e3e1a4b7ba251417554e07c00?tpId=13&tqId=11165&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tab=answerKey
-@Desc  : 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+@Date  : 2021/3/29 16:24
+@Link  :
+@Desc  :
 @Method:
 '''
 
-# -*- coding:utf-8 -*-
 class Solution:
-    def Power(self, base, exponent):
-        if base == 0:
-            return 0
-        if exponent == 0:
-            return 1
-        flag = 1
-        if exponent < 0:
-            flag = -1
-            exponent = -1 * (exponent)
-        res = 1
-        for _ in range(exponent):
-            res = res * base
-        return res if flag==1 else 1/res
+    def VerifySquenceOfBST(self, sequence):
+        # write code here
+        if not sequence:
+            return False
+        #找到跟节点
+        root = sequence[- 1]
+        i = 0
+        #找到左子树和右子树的分界点
+        while i < len(sequence) - 1:
+            if sequence[i] > root:
+                break
+            i += 1
+        for j in range(i,len(sequence)-1):
+            if sequence[j] < root:
+                return False
+        left = True
+        right = True
+        if i > 0:
+            left = self.VerifySquenceOfBST(sequence[:i])
+        if i < len(sequence) - 1:
+            right = self.VerifySquenceOfBST(sequence[i:len(sequence) - 1])
+        return left and right
 
-
-if __name__ == '__main__':
-    s = Solution()
-    res = s.Power(2, -3)
-    print(res)
+print("dsad")
