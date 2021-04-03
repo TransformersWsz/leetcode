@@ -7,15 +7,20 @@
 @Method: 
 '''
 
+
 # -*- coding:utf-8 -*-
 class Solution:
-    def LeftRotateString(self, s, n):
+    def ReverseSentence(self, s):
         # write code here
-        if not s or len(s) == 0:
+        if not s or len(s) <= 1:
             return s
-        n = n % len(s)
-        s = list(s)
-        s[:] = s[::-1]
-        s[-n:] = s[-n:][::-1]
-        s[:-n] = s[:-n][::-1]
-        return "".join(s)
+        length = len(s)
+        left, right = 0, 0
+        tmp = []
+        while right < length:
+            if (s[right] == " " and s[left] != " ") or (s[right] != " " and s[left] == " "):
+                tmp.append(s[left:right])
+                left = right
+            right += 1
+        tmp.append(s[left:right])
+        return "".join(tmp[::-1])
