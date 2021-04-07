@@ -45,5 +45,5 @@ if __name__ == '__main__':
         ['S', 'F', 'C', 'S'],
         ['A', 'D', 'E', 'E']
     ]
-    res = solution.exist(board, "SEE")
+    res = solution.exist(board, "ABCB")
     print(res)
