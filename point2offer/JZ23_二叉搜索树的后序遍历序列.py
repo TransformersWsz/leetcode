@@ -2,7 +2,7 @@
 @File  : JZ23_二叉搜索树的后序遍历序列.py
 @Author: Swift
 @Date  : 2021/3/29 16:24
-@Link  : 
+@Link  : https://www.nowcoder.com/practice/a861533d45854474ac791d90e447bafd?tpId=13&tqId=11176&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking&tab=answerKey
 @Desc  : 
 @Method: 
 '''
