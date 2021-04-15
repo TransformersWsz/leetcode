@@ -1,28 +1,26 @@
-def score(x, y):
-    length = len(x)
-    temp = []
-    for i in range(length):
-        temp.append(max(x[i], y[i]))
-    return min(temp)
+class Solution:
+    def __init__(self):
+        self.res = []
 
-def get_min_score(books):
-    length = len(books)
-    res = [0, 1, 2]
-    for i in range(length-1):
-        for j in range(length):
-            xy_score = score(books[i], books[j])
-            if res[0] < xy_score:
-                res = [xy_score, i+1, j+1]
-    return res
+    def backtrace(self, nums, start, temp):
+        length = len(nums)
+        if start == length:
+            self.res.append(temp)
+        else:
+            for i in range(start, length):
+                nums[start], nums[i] = nums[i], nums[start]
+                self.backtrace(nums, start + 1, temp + [nums[start]])
+                nums[start], nums[i] = nums[i], nums[start]
+
+    def permute(self, nums):
+        if not nums or len(nums) == 0:
+            return nums
+        self.backtrace(nums, 0, [])
+        return self.res
 
 
 if __name__ == '__main__':
-    t = int(input().strip())
-    for _ in range(t):
-        n = int(input())
-        books = []
-        for _ in range(n):
-            line = list(map(int, input().strip().split()))
-            books.append(line)
-        res = get_min_score(books)
-        print(res)
+    nums = [1,2,3]
+    s = Solution()
+    res = s.permute(nums)
+    print(res)
