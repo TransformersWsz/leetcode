@@ -1,3 +1,12 @@
+'''
+@File  : generate-parentheses.py
+@Author: Swift
+@Date  : 2021/4/16 16:33
+@Link  : https://leetcode-cn.com/problems/generate-parentheses/
+@Desc  : 22. 括号生成
+@Method: 
+'''
+
 class Solution:
     def __init__(self):
         self.res = []

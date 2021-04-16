@@ -12,10 +12,10 @@
 
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
     def reverse(self, root):
@@ -39,7 +39,6 @@ class Solution:
                 return slow
             fast = fast.next
             if not fast.next:
-
                 return slow.next
 
     def reorderList(self, head: ListNode) -> None:
@@ -78,8 +77,8 @@ def construct_ll(arr):
 
 if __name__ == '__main__':
     solution = Solution()
-    arr = [1,2,3,4]
+    arr = [1,2,3,4,5,6,7]
     head = construct_ll(arr)
-    traverse(head)
+    # traverse(head)
     solution.reorderList(head)
     traverse(head)
