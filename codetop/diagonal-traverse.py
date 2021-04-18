@@ -1,3 +1,12 @@
+'''
+@File  : diagonal-traverse.py
+@Author: Swift
+@Date  : 2021/4/18 12:26
+@Link  : https://leetcode-cn.com/problems/diagonal-traverse/
+@Desc  : 498. 对角线遍历
+@Method: 
+'''
+
 class Solution:
     def findDiagonalOrder(self, mat):
         rows = len(mat)
