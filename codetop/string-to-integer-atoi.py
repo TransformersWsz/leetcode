@@ -1,3 +1,12 @@
+'''
+@File  : string-to-integer-atoi.py
+@Author: Swift
+@Date  : 2021/4/19 12:09
+@Link  : https://leetcode-cn.com/problems/string-to-integer-atoi/
+@Desc  : 8. 字符串转换整数 (atoi)
+@Method: 
+'''
+
 class Solution:
     def myAtoi(self, s: str) -> int:
         if len(s) == 0:
@@ -5,17 +14,13 @@ class Solution:
         num = 0
         s = s.strip()
         flag = None
-        for c in s:
-            if c == "-":
-                if not flag:
-                    flag = -1
-                else:
+        for idx, c in enumerate(s):
+            if c in ["+", "-"]:
+                if idx != 0:
                     break
-            elif c == "+":
-                if not flag:
-                    flag = 1
                 else:
-                    break
+                    if not flag:
+                        flag = -1 if c == "-" else 1
             elif c in "0123456789":
                 num = num*10 + int(c)
             else:
