@@ -1,8 +1,17 @@
+'''
+@File  : remove-duplicates-from-sorted-list-ii.py
+@Author: Swift
+@Date  : 2021/4/25 18:53
+@Link  : https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/
+@Desc  : 82. 删除排序链表中的重复元素 II
+@Method: 
+'''
+
 # Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
         if not head or not head.next:
@@ -22,24 +31,3 @@ class Solution:
         if last1.next:
             last2.next = None
         return dummy_head.next
-
-def cons_list(arr):
-    dummy_head = ListNode(0)
-    prev = dummy_head
-    for item in arr:
-        node = ListNode(item)
-        prev.next = node
-        prev = node
-    return dummy_head.next
-
-def traverse(head):
-    while head:
-        print(head.val)
-        head = head.next
-
-if __name__ == '__main__':
-    arr = [1,1]
-    solution = Solution()
-    head = cons_list(arr)
-    head = solution.deleteDuplicates(head)
-    traverse(head)
