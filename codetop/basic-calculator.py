@@ -1,3 +1,12 @@
+'''
+@File  : basic-calculator.py
+@Author: Swift
+@Date  : 2021/4/26 18:34
+@Link  : https://leetcode-cn.com/problems/basic-calculator/
+@Desc  : 224. 基本计算器
+@Method: https://leetcode-cn.com/problems/basic-calculator/solution/ji-ben-ji-suan-qi-by-leetcode-solution-jvir/
+'''
+
 class Solution:
     def calculate(self, s: str) -> int:
         ops = [1]
