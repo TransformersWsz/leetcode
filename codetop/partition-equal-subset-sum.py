@@ -24,11 +24,11 @@ class Solution:
                         dp[i][j] = max(dp[i-1][j], dp[i-1][j-nums[i]]+nums[i])
                     else:
                         dp[i][j] = dp[i-1][j]
-        return dp[length-1][half] == total-half
+        return dp[length-1][half] == half
 
 
 if __name__ == '__main__':
     solution = Solution()
-    nums = [1,2,3,5]
+    nums = [1,5,11,5]
     res = solution.canPartition(nums)
     print(res)
