@@ -4,7 +4,7 @@
 @Date  : 2021/5/1 19:21
 @Link  : https://leetcode-cn.com/problems/multiply-strings/
 @Desc  : 43. 字符串相乘
-@Method:
+@Method: https://leetcode-cn.com/problems/multiply-strings/solution/zi-fu-chuan-xiang-cheng-by-leetcode-solution/
 '''
 
 class Solution:
@@ -40,11 +40,3 @@ class Solution:
             temp = "".join(temp[::-1])
             res = self.addStrings(res, temp)
         return res
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    num1 = "123"
-    num2 = "456"
-    res = solution.multiply(num1, num2)
-    print(res)
