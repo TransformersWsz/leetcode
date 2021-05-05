@@ -1,3 +1,12 @@
+'''
+@File  : target_sum.py
+@Author: Swift
+@Date  : 2021/5/5 20:45
+@Link  : https://leetcode-cn.com/problems/target-sum/
+@Desc  : 494. 目标和
+@Method: https://leetcode-cn.com/problems/target-sum/solution/yi-tao-kuang-jia-jie-jue-bei-bao-wen-ti-58wvk/
+'''
+
 from typing import List
 
 
