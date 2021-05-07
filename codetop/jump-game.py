@@ -1,3 +1,12 @@
+'''
+@File  : jump-game.py
+@Author: Swift
+@Date  : 2021/5/7 15:40
+@Link  : https://leetcode-cn.com/problems/jump-game/
+@Desc  : 55. 跳跃游戏
+@Method: https://leetcode-cn.com/problems/jump-game/solution/tiao-yue-you-xi-by-leetcode-solution/
+'''
+
 class Solution:
     def canJump(self, nums) -> bool:
         length, right_most = len(nums), 0
@@ -7,10 +16,3 @@ class Solution:
                 if right_most >= length-1:
                     return True
         return False
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    nums = [3,2,1,0,4]
-    res = solution.canJump(nums)
-    print(res)
