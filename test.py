@@ -1,16 +1,18 @@
 class Solution:
-    def canJump(self, nums) -> bool:
-        length, right_most = len(nums), 0
-        for i in range(length):
-            if i <= right_most:
-                right_most = max(right_most, i+nums[i])
-                if right_most >= length-1:
-                    return True
-        return False
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        last, res = 0, 0
+        d = {}
+        for idx, c in enumerate(s):
+            if c in d:
+                last = max(last, d[c])
+                # last = max(last, d[c])
+            res = max(res, idx-last+1)
+            d[c] = idx + 1
+        return res
 
 
 if __name__ == '__main__':
     solution = Solution()
-    nums = [3,2,1,0,4]
-    res = solution.canJump(nums)
+    s = "abba"
+    res = solution.lengthOfLongestSubstring(s)
     print(res)
