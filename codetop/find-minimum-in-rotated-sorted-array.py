@@ -8,13 +8,15 @@
 '''
 
 class Solution:
-    def findMin(self, nums):
+    def findMin(self, rotateArray):
         low = 0
-        high = len(nums)-1
-        while low <= high:
-            mid = (low+high) // 2
-            if nums[mid] < nums[high]:
+        high = len(rotateArray)-1
+        while low < high:
+            mid = (high + low) // 2
+            if rotateArray[mid] < rotateArray[high]:
                 high = mid
+            elif rotateArray[mid] > rotateArray[high]:
+                low = mid + 1
             else:
-                low = mid+1
-        return nums[high]
+                high -= 1
+        return rotateArray[low]

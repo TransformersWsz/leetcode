@@ -11,8 +11,6 @@
 class Solution:
     def minNumberInRotateArray(self, rotateArray):
         # write code here
-        if not rotateArray:
-            return 0
         low = 0
         high = len(rotateArray)-1
         while low < high:
