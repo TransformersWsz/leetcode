@@ -1,3 +1,12 @@
+'''
+@File  : permutations-ii.py
+@Author: Swift
+@Date  : 2021/5/17 17:50
+@Link  : https://leetcode-cn.com/problems/permutations-ii/
+@Desc  : 47. 全排列 II
+@Method: https://leetcode-cn.com/problems/permutations-ii/solution/quan-pai-lie-ii-by-leetcode-solution/
+'''
+
 from typing import List
 
 
