@@ -1,4 +1,11 @@
-
+'''
+@File  : string-compression.py
+@Author: Swift
+@Date  : 2021/5/18 22:09
+@Link  : https://leetcode-cn.com/problems/string-compression/
+@Desc  : 443. 压缩字符串
+@Method: 
+'''
 from typing import List
 
 
@@ -16,10 +23,3 @@ class Solution:
                         write += 1
                 anchor = cur + 1
         return write
-
-if __name__ == '__main__':
-    solution = Solution()
-    nums = ["a","a", "b","b","c", "c", "c"]
-    res = solution.compress(nums)
-    print(res)
-    print(nums)
