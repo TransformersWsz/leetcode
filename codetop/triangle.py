@@ -1,6 +1,11 @@
-
-from typing import List
-
+'''
+@File  : triangle.py
+@Author: Swift
+@Date  : 2021/5/20 17:08
+@Link  : https://leetcode-cn.com/problems/triangle/
+@Desc  : 120. 三角形最小路径和
+@Method: 
+'''
 
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
@@ -16,11 +21,3 @@ class Solution:
                     if i-2 >= 0 and j-2 >= 0:
                         dp[i][j] = min(dp[i][j], dp[i-1][j-1]+triangle[i-1][j-1])
         return min(dp[rows])
-
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    triangle = [[-10]]
-    res = solution.minimumTotal(triangle)
-    print(res)
