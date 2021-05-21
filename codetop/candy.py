@@ -1,6 +1,11 @@
-
-from typing import List
-
+'''
+@File  : candy.py
+@Author: Swift
+@Date  : 2021/5/21 13:57
+@Link  : https://leetcode-cn.com/problems/candy/
+@Desc  : 135. 分发糖果
+@Method: 
+'''
 
 class Solution:
     def candy(self, ratings: List[int]) -> int:
@@ -15,10 +20,3 @@ class Solution:
                 ret[i] = max(ret[i], ret[i+1]+1)
 
         return sum(ret)
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    obstacleGrid = [1,2,87,87,87,2,1]
-    res = solution.candy(obstacleGrid)
-    print(res)
