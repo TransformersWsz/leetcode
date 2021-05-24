@@ -1,12 +1,17 @@
+'''
+@File  : rotate-list.py
+@Author: Swift
+@Date  : 2021/5/24 15:45
+@Link  : https://leetcode-cn.com/problems/rotate-list/
+@Desc  : 61. 旋转链表
+@Method: 
+'''
 
-from typing import List
-
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
 
     def get_len(self, head):
@@ -42,26 +47,3 @@ class Solution:
         temp.next = head
         new_tail_node.next = None
         return new_head_node
-
-
-def construct(arr):
-    dummy_head = ListNode(0)
-    prev = dummy_head
-    for item in arr:
-        node = ListNode(item)
-        prev.next = node
-        prev = node
-    return dummy_head.next
-
-def traverse(head):
-    while head:
-        print(head.val)
-        head = head.next
-
-if __name__ == '__main__':
-    solution = Solution()
-    arr = [1,2]
-    k = 2
-    head = construct(arr)
-    new_head = solution.rotateRight(head, k)
-    traverse(new_head)
