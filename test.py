@@ -2,66 +2,31 @@
 from typing import List
 
 
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+import collections
+import math
+
 
 class Solution:
-
-    def get_len(self, head):
-        count = 0
-        while head:
-            count += 1
-            head = head.next
-        return count
-
-    def get_last_k_node(self, head, k):
-        cur = head
-        forward = head
-        for _ in range(k):
-            if forward:
-                forward = forward.next
-
-        while forward:
-            cur = cur.next
-            forward = forward.next
-        return cur
-
-    def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if not head:
-            return head
-
-        length = self.get_len(head)
-        k = k % length
-        if k == 0:
-            return head
-        new_tail_node = self.get_last_k_node(head, k + 1)
-        new_head_node = new_tail_node.next
-        temp = self.get_last_k_node(head, 1)
-        temp.next = head
-        new_tail_node.next = None
-        return new_head_node
+    def shortestSubarray(self, A: List[int], K: int) -> int:
+        prefix = [0]
+        for v in A:
+            prefix.append(prefix[-1] + v)
+        que = collections.deque()
+        res = math.inf
+        for i in range(len(prefix)):
+            while que and prefix[i] - prefix[que[0]] >= K:
+                res = min(res, i - que[0])
+                que.popleft()
+            while que and prefix[i] <= prefix[que[-1]]:
+                que.pop()
+            que.append(i)
+        return res if res != math.inf else -1
 
 
-def construct(arr):
-    dummy_head = ListNode(0)
-    prev = dummy_head
-    for item in arr:
-        node = ListNode(item)
-        prev.next = node
-        prev = node
-    return dummy_head.next
-
-def traverse(head):
-    while head:
-        print(head.val)
-        head = head.next
 
 if __name__ == '__main__':
     solution = Solution()
-    arr = [1,2]
-    k = 2
-    head = construct(arr)
-    new_head = solution.rotateRight(head, k)
-    traverse(new_head)
+    A = [10, -5, 15]
+    K = 15
+    res = solution.shortestSubarray(A, K)
+    print(res)
