@@ -7,17 +7,27 @@ import math
 
 
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        length = len(nums)
-        accum = length*(length+1)//2
-        for item in nums:
-            accum -= item
-        return accum
+    def __init__(self):
+        self.count = 0
 
+    def dfs(self, isConnected, i, isVisited):
+        for j in range(len(isConnected[i])):
+            if not isVisited[j] and isConnected[i][j]:
+                isVisited[j] = True
+                self.dfs(isConnected, j, isVisited)
+
+    def findCircleNum(self, isConnected: List[List[int]]) -> int:
+        num = len(isConnected)
+        isVisited = [False] * num
+        for i in range(num):
+            if not isVisited[i]:
+                self.dfs(isConnected, i, isVisited)
+                self.count += 1
+        return self.count
 
 
 if __name__ == '__main__':
     solution = Solution()
-    A = [2,0]
-    res = solution.missingNumber(A)
+    isConnected = [[1,0,0],[0,1,0],[0,0,1]]
+    res = solution.findCircleNum(isConnected)
     print(res)
