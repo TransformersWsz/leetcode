@@ -2,9 +2,9 @@
 @File  : find-all-duplicates-in-an-array.py
 @Author: Swift
 @Date  : 2021/5/30 17:40
-@Link  : 
-@Desc  : 
-@Method: 
+@Link  : https://leetcode-cn.com/problems/find-all-duplicates-in-an-array
+@Desc  : 442. 数组中重复的数据
+@Method: https://leetcode-cn.com/problems/find-all-duplicates-in-an-array/solution/shu-zu-zhong-zhong-fu-de-shu-jian-dan-bi-utnm/
 '''
 
 class Solution:
