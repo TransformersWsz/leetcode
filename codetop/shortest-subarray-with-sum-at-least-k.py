@@ -4,7 +4,7 @@
 @Date  : 2021/5/27 16:36
 @Link  : https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/
 @Desc  : 862. 和至少为 K 的最短子数组
-@Method: 
+@Method: https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/solution/python3-dui-qian-zhui-he-zuo-di-zeng-zha-otmq/
 '''
 
 
