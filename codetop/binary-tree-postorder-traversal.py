@@ -3,7 +3,7 @@
 @Author: Swift
 @Date  : 2021/3/10 22:15
 @Link  : https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
-@Desc  : 145. 二叉树的后序遍历
+@Desc  : 145. 二叉树的后序遍历(额外添加了非递归前序和中序遍历)
 @Method: https://leetcode-cn.com/problems/binary-tree-postorder-traversal/solution/die-dai-jie-fa-shi-jian-fu-za-du-onkong-jian-fu-za/
 '''
 
@@ -31,3 +31,31 @@ class Solution:
                 root = stack.pop()
                 root = root.left
         return res
+
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        stack = []
+        res = []
+        while root or stack:
+            if root:
+                res.append(root.val)
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack.pop()
+                root = root.right
+
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        stack = []
+        res = []
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack.pop()
+                res.append(root.val)
+                root = root.right
