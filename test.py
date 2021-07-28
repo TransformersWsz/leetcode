@@ -17,28 +17,33 @@
 # @param endPoint int整型一维数组 终点
 # @return int整型
 #
-class Solution:
-    def shortestSubarray(self, A, K: int) -> int:
-        prefix = [0]
-        stack = []
-        for v in A:
-            prefix.append(prefix[-1] + v)
+from typing import List
 
-        res = length = len(prefix)
-        for i in range(length):
-            while stack and prefix[i] - prefix[stack[0]] >= K:
-                res = min(res, i - stack[0])
-                stack.pop(0)
-            while stack and prefix[i] <= prefix[stack[-1]]:
-                stack.pop()
-            stack.append(i)
-        return res if res != length else -1
+
+class Solution:
+    def __init__(self):
+        self.res = []
+
+    def dfs(self, data, start):
+        if start == len(data):
+            self.res.append(data[:])
+        else:
+            for i in range(start, len(data)):
+                data[i], data[start] = data[start], data[i]
+                self.dfs(data, start+1)
+                data[i], data[start] = data[start], data[i]
+
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        data = [i + 1 for i in range(n)]
+        self.dfs(data, 0)
+        return self.res
 
 
 if __name__ == "__main__":
 
     solution = Solution()
-    nums = [2,-1,4]
-    k = 3
-    res = solution.shortestSubarray(nums, k)
+    n = 4
+    k = 2
+
+    res = solution.combine(4, 2)
     print(res)

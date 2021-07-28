@@ -14,31 +14,31 @@ class ListNode:
         self.next = None
 
 
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def deleteDuplication(self, pHead):
-        # write code here
-        if not pHead:
-            return None
-        guard = ListNode(float("-inf"))
-        guard.next = pHead
-        pHead = pHead.next
-        guard.next.next = None
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        dummy_head = ListNode(0)
+        dummy_head.next = head
+        last2 = dummy_head
+        last1 = head
 
-        last1 = guard
-        last2 = last1.next
-        while pHead:
-            if pHead.val == last2.val:
-                pHead = pHead.next
-                while pHead and pHead.val == last2.val:
-                    pHead = pHead.next
-            else:
-                last1 = last2
-            last2 = pHead
-            last1.next = last2
-            if pHead:
-                pHead = pHead.next
-
-        return guard.next
+        while head:
+            if head.val != last1.val:
+                if last1.next == head:
+                    last2 = last1
+                else:
+                    last2.next = head
+                last1 = head
+            head = head.next
+        if last1.next:
+            last2.next = None
+        return dummy_head.next
 
 
 def construct_ll(arr):

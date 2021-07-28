@@ -9,30 +9,34 @@
 
 # -*- coding:utf-8 -*-
 class Solution:
-    def search(self, nums: [int], target: int) -> int:
-        def helper(tar):
-            low, high = 0, len(nums) - 1
-            while low <= high:
-                m = (low + high) // 2
-                if nums[m] <= tar:
-                    low = m + 1
-                else:
-                    high = m - 1
-            return low
-        right = helper(target)
-        left = helper(target-1)
-        print(right, left)
-        return right-left
+    def dfs(self, i, j, k, visited, board, word):
+        if board[i][j] == word[k]:
+            if k == len(word)-1:
+                return True
+            visited[i][j] = True
+            direction = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+            result = False
+            for di, dj in direction:
+                newi = i + di
+                newj = j + dj
+                if 0 <= newi < len(board) and 0 <= newj < len(board[0]) and not visited[newi][newj]:
+                    if self.dfs(newi, newj, k+1, visited, board, word):
+                        result = True
+                        break
+            visited[i][j] = False
+            return result
+        else:
+            return False
 
-    def test(self, nums, target):
-        low, high = 0, len(nums) - 1
-        while low <= high:
-            m = (low + high) // 2
-            if nums[m] <= target:
-                low = m + 1
-            else:
-                high = m - 1
-        return low
+    def exist(self, board, word: str) -> bool:
+        rows = len(board)
+        cols = len(board[0])
+        visited = [ [False]*cols for _ in range(rows) ]
+        for i in range(rows):
+            for j in range(cols):
+                if self.dfs(i, j, 0, visited, board, word):
+                    return True
+        return False
 
 
 
