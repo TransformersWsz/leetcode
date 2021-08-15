@@ -20,30 +20,62 @@
 from typing import List
 
 
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
-    def __init__(self):
-        self.res = []
+    def rl(self, head, tail):
+        prev = None
+        cur = head
+        end_node = tail.next
+        while cur != end_node:
+            tmp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = tmp
+        return tail, head
 
-    def dfs(self, data, start):
-        if start == len(data):
-            self.res.append(data[:])
-        else:
-            for i in range(start, len(data)):
-                data[i], data[start] = data[start], data[i]
-                self.dfs(data, start+1)
-                data[i], data[start] = data[start], data[i]
+    def find_kth_node(self, head, k):
+        p = head
+        for i in range(k - 1):
+            p = p.next
+        return p
 
-    def combine(self, n: int, k: int) -> List[List[int]]:
-        data = [i + 1 for i in range(n)]
-        self.dfs(data, 0)
-        return self.res
+    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+        q = self.find_kth_node(head, left - 1)
+        qhead = q.next
+        p = self.find_kth_node(head, right)
+        phead = p.next
+        newh, newt = self.rl(qhead, p)
+        q.next = newh
+        newt.next = phead
+        return head
+
+
+def construct(arr):
+    dummy = ListNode(0)
+    p = dummy
+    for item in arr:
+        node = ListNode(item)
+        p.next = node
+        p = node
+    return dummy.next
+
+def traverse(head):
+    arr = []
+    while head:
+        arr.append(head.val)
+        head = head.next
+    print(arr)
 
 
 if __name__ == "__main__":
 
     solution = Solution()
-    n = 4
-    k = 2
-
-    res = solution.combine(4, 2)
-    print(res)
+    arr = [1, 2, 3, 4, 5]
+    head = construct(arr)
+    res = solution.reverseBetween(head, 2, 4)
+    traverse(res)

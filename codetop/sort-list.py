@@ -22,11 +22,9 @@ class Solution:
                 head.next = None
                 return head
             slow = fast = head
-            while fast != tail:
+            while fast != tail and fast.next != tail:
                 slow = slow.next
-                fast = fast.next
-                if fast != tail:
-                    fast = fast.next
+                fast = fast.next.next
             mid = slow
             return merge(sortFunc(head, mid), sortFunc(mid, tail))
 

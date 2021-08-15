@@ -8,57 +8,52 @@
 '''
 
 
-
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
+
 class Solution:
-    def reverse(self, root):
-        if not root:
-            return None
+    def reorderList(self, head: ListNode) -> None:
+        if not head:
+            return
+
+        mid = self.middleNode(head)
+        l1 = head
+        l2 = mid.next
+        mid.next = None
+        l2 = self.reverseList(l2)
+        self.mergeList(l1, l2)
+
+    def middleNode(self, head: ListNode) -> ListNode:
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+
+    def reverseList(self, head: ListNode) -> ListNode:
         prev = None
-        while root:
-            temp = root.next
-            root.next = prev
-            prev = root
-            root = temp
+        curr = head
+        while curr:
+            nextTemp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextTemp
         return prev
 
-    def get_mid_node(self, head):
-        slow = head
-        fast = head
-        while fast:
-            slow = slow.next
-            fast = fast.next
-            if not fast.next:
-                return slow
-            fast = fast.next
-            if not fast.next:
-                return slow.next
+    def mergeList(self, l1: ListNode, l2: ListNode):
+        while l1 and l2:
+            l1_tmp = l1.next
+            l2_tmp = l2.next
 
-    def reorderList(self, head: ListNode) -> None:
-        """
-        Do not return anything, modify head in-place instead.
-        """
-        if not head or not head.next:
-            return head
+            l1.next = l2
+            l1 = l1_tmp
 
-        mid = self.get_mid_node(head)
-        down = self.reverse(mid)
-        up = head
-        while down:
-            temp_up = up.next
-            temp_down = down.next
-            up.next = down
-            down.next = temp_up
-            down = temp_down
-            up = temp_up
-        up.next = None
+            l2.next = l1
+            l2 = l2_tmp
 
 
 def traverse(head):
@@ -74,6 +69,7 @@ def construct_ll(arr):
         prev.next = node
         prev = node
     return guard.next
+
 
 if __name__ == '__main__':
     solution = Solution()
