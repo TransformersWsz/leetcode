@@ -19,63 +19,33 @@
 #
 from typing import List
 
-
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
 class Solution:
-    def rl(self, head, tail):
-        prev = None
-        cur = head
-        end_node = tail.next
-        while cur != end_node:
-            tmp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = tmp
-        return tail, head
-
-    def find_kth_node(self, head, k):
-        p = head
-        for i in range(k - 1):
-            p = p.next
-        return p
-
-    def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
-        q = self.find_kth_node(head, left - 1)
-        qhead = q.next
-        p = self.find_kth_node(head, right)
-        phead = p.next
-        newh, newt = self.rl(qhead, p)
-        q.next = newh
-        newt.next = phead
-        return head
-
-
-def construct(arr):
-    dummy = ListNode(0)
-    p = dummy
-    for item in arr:
-        node = ListNode(item)
-        p.next = node
-        p = node
-    return dummy.next
-
-def traverse(head):
-    arr = []
-    while head:
-        arr.append(head.val)
-        head = head.next
-    print(arr)
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        op = ["+", "-", "*", "/"]
+        for item in tokens:
+            if item not in op:
+                stack.append(int(item))
+            else:
+                p = stack.pop()
+                q = stack.pop()
+                if item == "+":
+                    res = q + p
+                elif item == "-":
+                    res = q - p
+                elif item == "*":
+                    res = q * p
+                else:
+                    flag = 1 if q*p >= 0 else -1
+                    res = abs(q) // abs(p)
+                    res = flag * res
+                stack.append(res)
+        return stack[0]
 
 
 if __name__ == "__main__":
 
     solution = Solution()
-    arr = [1, 2, 3, 4, 5]
-    head = construct(arr)
-    res = solution.reverseBetween(head, 2, 4)
-    traverse(res)
+    tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
+    res = solution.evalRPN(tokens)
+    print(res)
