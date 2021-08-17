@@ -20,32 +20,31 @@
 from typing import List
 
 class Solution:
-    def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
-        op = ["+", "-", "*", "/"]
-        for item in tokens:
-            if item not in op:
-                stack.append(int(item))
-            else:
-                p = stack.pop()
-                q = stack.pop()
-                if item == "+":
-                    res = q + p
-                elif item == "-":
-                    res = q - p
-                elif item == "*":
-                    res = q * p
+    def search(self, nums: List[int], target: int) -> int:
+        low = 0
+        high = len(nums)-1
+        while low <= high:
+            mid = (low+high) // 2
+            pivot = nums[mid]
+            if pivot == target:
+                return mid
+            elif pivot < target:
+                if nums[high] >= target:
+                    low = mid + 1
                 else:
-                    flag = 1 if q*p >= 0 else -1
-                    res = abs(q) // abs(p)
-                    res = flag * res
-                stack.append(res)
-        return stack[0]
+                    high = mid - 1
+            else:
+                if nums[low] <= target:
+                    high = mid - 1
+                else:
+                    low = mid + 1
+        return -1
 
 
 if __name__ == "__main__":
 
     solution = Solution()
-    tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
-    res = solution.evalRPN(tokens)
+    nums = [4, 5, 6, 7, 8, 1, 2, 3]
+    target = 8
+    res = solution.search(nums, target)
     print(res)

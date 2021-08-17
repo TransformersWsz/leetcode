@@ -16,16 +16,16 @@ class Solution:
         high = len(nums)-1
         while low <= high:
             mid = (low+high) // 2
-            if nums[mid]  == target:
+            if nums[mid] == target:
                 return mid
             else:
                 if nums[low] <= nums[mid]:    # low->mid ordered
-                    if nums[low] <= target and target <= nums[mid]:
+                    if nums[low] <= target <= nums[mid]:
                         high = mid-1
                     else:
                         low = mid + 1
                 else:    # mid+1->high ordered
-                    if nums[mid+1] <= target and target <= nums[high]:
+                    if nums[mid + 1] <= target <= nums[high]:
                         low = mid+1
                     else:
                         high = mid-1
