@@ -19,10 +19,8 @@ class Solution:
             return None
         slow = pHead
         fast = pHead
-        while fast:
+        while fast and fast.next:
             slow = slow.next
-            if not fast.next:
-                return None
             fast = fast.next.next
             if fast == slow:
                 entry = pHead
