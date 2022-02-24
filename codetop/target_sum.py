@@ -14,7 +14,7 @@ class Solution:
 
     def findTargetSumWays(self, nums: List[int], S: int) -> int:
         total = sum(nums)
-        if total < S or (total+S)%2==1:
+        if total < abs(S) or (total+S)%2==1:
             return 0
         target = (total+S) // 2
         dp = [0]*(target+1)
@@ -27,7 +27,7 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    nums = [1,1,1,1,1]
-    S = 3
+    nums = [100]
+    S = -200
     res = solution.findTargetSumWays(nums, S)
     print(res)
