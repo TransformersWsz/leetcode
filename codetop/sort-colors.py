@@ -7,7 +7,7 @@
 # @Method  : https://leetcode-cn.com/problems/sort-colors/solution/yan-se-fen-lei-by-leetcode-solution/
 
 class Solution:
-    def sortColors(self, nums: List[int]) -> None:
+    def sortColors(self, nums) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
@@ -23,3 +23,10 @@ class Solution:
                     nums[i], nums[p1] = nums[p1], nums[i]
                 p0 += 1
                 p1 += 1
+
+
+if __name__ == "__main__":
+    solution = Solution()
+    nums = [2, 1, 1, 0, 0]
+    solution.sortColors(nums)
+    print(nums)
